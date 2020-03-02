@@ -1,0 +1,16 @@
+setwd("/Users/timkatzer/Downloads")
+getwd()
+final <- data.frame()
+for (i in 52:64){
+  print(i)
+articles <- lnt_read(paste0("Files(100) ",as.character(i),".docx"))
+datas<-data.frame(source = articles@meta$Newspaper, date = articles@meta$Date, title = articles@meta$Headline, article = articles@articles$Article)
+final <- rbind(final,datas)
+return(final)
+}
+library("LexisNexisTools")  
+ano <- lnt_read("Files(100).docx")
+datas<-data.frame(source = ano@meta$Newspaper, date = ano@meta$Date, title = ano@meta$Headline, article = ano@articles$Article)
+finalano<-rbind(final,ano)
+setwd("/Users/timkatzer/Desktop/ArtikelBlackrock")
+write.csv2(final, file = "larryfinkarticle.csv")
